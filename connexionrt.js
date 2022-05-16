@@ -5,5 +5,5 @@ module.exports = app => {
 
     // Create a new Contact
     //app.post('/api/connexion/create', email.email);
-    app.post('connexion/create', connexion.create);
+    app.post('/connexion', connexion.create);
 }

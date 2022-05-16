@@ -6,7 +6,7 @@ const Connexion = db.Connexion;
 // Create and Save a new Connexion
 exports.create = (req, res) => {
     // Validate request
-    if (req.body.prenom === "") {
+    if (req.body.email === "") {
         res.status(400).send({
             message: "Content can not be empty!"
         });

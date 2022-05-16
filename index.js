@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
-
+//const cors = require("cors");
+const bodyParser = require('body-parser');
 
 const db = require("./db.config.js");
 
@@ -14,7 +15,9 @@ db.sequelize.sync({ force: false }).then(() => {
 });
 //app.use(cors(corsOptions));
 app.use(bodyParser.json())
-
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 // set port, listen for requests
 require("./connexionrt.js")(app);
 const PORT = process.env.PORT || 3000;
@@ -32,5 +35,5 @@ app.listen(PORT, () => {
 
 //simple route
 app.get("/", (req, res) => {
-    res.json({ message: "Welcome backend legion web." });
+    res.json({ message: "Welcome connexion backend." });
 });
