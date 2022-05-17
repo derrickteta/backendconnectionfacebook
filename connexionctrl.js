@@ -1,33 +1,24 @@
-const db = require("./db.config.js");
-const Connexion = db.Connexion;
-
+const User = require('./connect.js');
 //const Op = db.Sequelize.Op;
 
-// Create and Save a new Connexion
-exports.create = (req, res) => {
-    // Validate request
-    if (req.body.email === "") {
-        res.status(400).send({
-            message: "Content can not be empty!"
+exports.createUser = (req, res) => {
+    const user = new User(req.body);
+    user
+      .save()
+      .then(() => {
+        res.status(201).json({
+          success: true,
+          message: 'Le user a été enregistré avec succès',
+          result: user,
         });
-        return;
-    }
-
-    // Create a Connexion
-    const connexion = {
-        email: req.body.email,
-        motdepasse: req.body.motdepasse,
-    };
-
-
-    // Save Connexion in the database
-    Connexion.create(connexion)
-        .then(connexion => {
-            res.send(connexion);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while creating the Connexion."
-            });
+      })
+      .catch((error) => {
+        console.log(error);
+        res.status(400).json({
+          success: false,
+          message: "Une erreur s'est produite",
+          result: undefined,
         });
-};
+      });
+  };
+  

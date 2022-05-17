@@ -1,23 +1,15 @@
 const express = require("express");
 const app = express();
-//const cors = require("cors");
+require('dotenv').config();
+
 const bodyParser = require('body-parser');
+const connection = require('./db.config.js');
 
-const db = require("./db.config.js");
-
-//var corsOptions = {
-  //  origin: "*"
-//};
-// pour l'enregistrement dans la bd
-// force: true will drop the table if it already exists
-db.sequelize.sync({ force: false }).then(() => {
-    console.log('Drop and Resync with { force: false }');
-});
-//app.use(cors(corsOptions));
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+
+// connection do mongo database
+connection();
+
 // set port, listen for requests
 require("./connexionrt.js")(app);
 const PORT = process.env.PORT || 3000;
