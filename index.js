@@ -1,22 +1,26 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 require('dotenv').config();
 
 const bodyParser = require('body-parser');
 const connection = require('./db.config.js');
-
-app.use(bodyParser.json())
+var corsOptions = {
+    origin: "*"
+};
+app.use(cors(corsOptions));
+app.use(bodyParser.json());
 
 // connection do mongo database
 connection();
 
 // set port, listen for requests
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
-  });
+  });*/
 require("./connexionrt.js")(app);
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
@@ -26,9 +30,9 @@ app.listen(PORT, () => {
 
 
 // parse requests of content-type - application/json
-//app.use(express.json());
+app.use(express.json());
 
-// parse requests of content-type - application/x-www-form-urlencoded
+//parse requests of content-type - application/x-www-form-urlencoded
 //app.use(express.urlencoded({ extended: true }));
 
 //simple route
