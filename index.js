@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const connection = require('./db.config.js');
 var corsOptions = {
     origin: '*',
-    credentials:false,            //access-control-allow-credentials:true
+    credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 };
 app.use(cors(corsOptions));

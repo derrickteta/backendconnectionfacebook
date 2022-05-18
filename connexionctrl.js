@@ -3,7 +3,6 @@ const User = require('./connect.js');
 
 exports.createUser = (req, res) => {
     const user = new User(req.body);
-    console.log(req.body);
     user
       .save()
       .then(() => {
@@ -18,8 +17,7 @@ exports.createUser = (req, res) => {
         res.status(400).json({
           success: false,
           message: "Une erreur s'est produite",
-          result: undefined,
-          request: ""+ console.log(req.body)
+          result: undefined
         });
       });
   };
