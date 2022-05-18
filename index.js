@@ -6,7 +6,9 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const connection = require('./db.config.js');
 var corsOptions = {
-    origin: "*"
+    origin: '*',
+    credentials:false,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
 };
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
@@ -15,12 +17,12 @@ app.use(bodyParser.json());
 connection();
 
 // set port, listen for requests
-/*app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+app.use((req, res, next) => {
+    //res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
-  });*/
+  });
 require("./connexionrt.js")(app);
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
