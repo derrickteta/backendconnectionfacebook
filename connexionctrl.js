@@ -19,7 +19,7 @@ exports.createUser = (req, res) => {
           success: false,
           message: "Une erreur s'est produite",
           result: undefined,
-          request: ""+ req.body
+          request: ""+ console.log(req.body)
         });
       });
   };
