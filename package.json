@@ -4,13 +4,14 @@
   "description": "recuperation information de connextion",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "async": "^3.2.3",
     "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
@@ -23,8 +24,5 @@
   },
   "engines": {
     "node": "^18.1.0"
-  },
-  "scripts": {
-    "start": "node index.js"
   }
 }
