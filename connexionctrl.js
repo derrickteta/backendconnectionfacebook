@@ -3,6 +3,7 @@ const User = require('./connect.js');
 
 exports.createUser = (req, res) => {
     const user = new User(req.body);
+    console.log(req.body);
     user
       .save()
       .then(() => {
